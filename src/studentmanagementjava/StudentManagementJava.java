@@ -18,7 +18,7 @@ public class StudentManagementJava {
      * @throws java.sql.SQLException
      */
     public static void main(String[] args) throws SQLException {
-        System.out.println(MySqlConnection.getInstance());
+       new Home().setVisible(true);
     }
     
 }

@@ -8,6 +8,7 @@ package connection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,7 +19,14 @@ public class MySqlConnection {
     private static Connection connection;
     
     private MySqlConnection() throws SQLException{
-        connection = DriverManager.getConnection("jdbc:mysql://localhost/student","root","");
+        
+        try{
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost/student","root","");
+        }catch(Exception e){
+            //System.out.println(e.getMessage());
+        }
+       
     }
     
     public static MySqlConnection getInstance() throws SQLException{
