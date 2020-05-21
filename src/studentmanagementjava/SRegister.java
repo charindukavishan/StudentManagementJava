@@ -194,11 +194,12 @@ public class SRegister extends javax.swing.JFrame {
         
         String uName = this.uName.getText();
         String email = this.email.getText();
-        String password = this.password.getPassword().toString();
+        String password = String.copyValueOf(this.password.getPassword());
         String fName = this.fName.getText();
         String age = this.age.getText();
         String nic = this.nic.getText();
-        System.out.println(password);
+        Long data = System.currentTimeMillis();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
