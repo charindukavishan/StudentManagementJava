@@ -16,13 +16,14 @@ import java.util.logging.Logger;
  */
 public class MySqlConnection {
     private static MySqlConnection instance;
-    private static Connection connection;
+    static Connection connection;
     
     private MySqlConnection() throws SQLException{
         
         try{
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection("jdbc:mysql://localhost/student","root","");
+            System.out.println(connection);
         }catch(Exception e){
             //System.out.println(e.getMessage());
         }

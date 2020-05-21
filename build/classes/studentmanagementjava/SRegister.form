@@ -24,29 +24,29 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace pref="79" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="UName" max="32767" attributes="0"/>
-                  <Component id="lEmail" max="32767" attributes="0"/>
-                  <Component id="email1" alignment="0" max="32767" attributes="0"/>
-                  <Component id="email2" alignment="0" max="32767" attributes="0"/>
-                  <Component id="email3" alignment="0" max="32767" attributes="0"/>
-                  <Component id="email4" alignment="0" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="fName" alignment="0" pref="547" max="32767" attributes="0"/>
-                  <Component id="age" alignment="0" max="32767" attributes="0"/>
-                  <Component id="nic" alignment="0" max="32767" attributes="0"/>
-                  <Component id="uName" max="32767" attributes="0"/>
-                  <Component id="email" alignment="0" max="32767" attributes="0"/>
-                  <Component id="password" alignment="0" max="32767" attributes="0"/>
-              </Group>
-              <EmptySpace pref="79" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="jButton1" min="-2" pref="145" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="UName" max="32767" attributes="0"/>
+                          <Component id="lEmail" max="32767" attributes="0"/>
+                          <Component id="email1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="email2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="email3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="email4" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="fName" alignment="0" pref="547" max="32767" attributes="0"/>
+                          <Component id="age" alignment="0" max="32767" attributes="0"/>
+                          <Component id="nic" alignment="0" max="32767" attributes="0"/>
+                          <Component id="uName" max="32767" attributes="0"/>
+                          <Component id="email" alignment="0" max="32767" attributes="0"/>
+                          <Component id="password" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="jButton1" alignment="0" min="-2" pref="145" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
