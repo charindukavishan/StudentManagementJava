@@ -10,5 +10,7 @@ package connection;
  * @author Charindu Kavishan
  */
 public class Auth {
-    
+    public static boolean signin(String uName, String password){
+        return true;
+    }
 }

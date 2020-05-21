@@ -25,4 +25,5 @@ public class StudentTableModel {
         
         quary.executeUpdate();
     }
+    
 }

@@ -209,10 +209,7 @@ public class SRegister extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "User Already exist.");
         } catch (SQLException ex) {
             Logger.getLogger(SRegister.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-//        catch (SQLException ex) {
-//            Logger.getLogger(SRegister.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
