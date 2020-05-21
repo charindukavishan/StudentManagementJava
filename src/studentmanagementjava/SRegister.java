@@ -5,12 +5,16 @@
  */
 package studentmanagementjava;
 
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import javax.swing.JPasswordField;
 import connection.MySqlConnection;
+import connection.StudentTableModel;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -194,11 +198,21 @@ public class SRegister extends javax.swing.JFrame {
         
         String uName = this.uName.getText();
         String email = this.email.getText();
-        String password = this.password.getPassword().toString();
+        String password = String.copyValueOf(this.password.getPassword());
         String fName = this.fName.getText();
         String age = this.age.getText();
         String nic = this.nic.getText();
-        System.out.println(password);
+        
+        try {
+            StudentTableModel.insert(uName, email, password, fName, age, nic);
+        } catch (SQLIntegrityConstraintViolationException ex){
+            JOptionPane.showMessageDialog(null, "User Already exist.");
+        } catch (SQLException ex) {
+            Logger.getLogger(SRegister.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+//        catch (SQLException ex) {
+//            Logger.getLogger(SRegister.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
