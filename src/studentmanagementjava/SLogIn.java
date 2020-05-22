@@ -4,6 +4,12 @@
  * and open the template in the editor.
  */
 package studentmanagementjava;
+import connection.Auth;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import connection.User;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -88,6 +94,18 @@ public class SLogIn extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String uName =this.uName.getText();
         String password = String.copyValueOf(this.password.getPassword());
+        
+        try {
+            Boolean auth = Auth.signin(uName, password);
+            if(auth) {
+              dispose();
+              new Home().setVisible(true);
+            }
+            else
+              JOptionPane.showMessageDialog(null, "Incorrect User Name or Password");
+        } catch (SQLException ex) {
+            Logger.getLogger(SLogIn.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

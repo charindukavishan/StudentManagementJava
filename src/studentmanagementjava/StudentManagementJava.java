@@ -18,7 +18,8 @@ public class StudentManagementJava {
      * @throws java.sql.SQLException
      */
     public static void main(String[] args) throws SQLException {
-       new Home().setVisible(true);
+//       new Home().setVisible(true);
+         new SLogIn().setVisible(true);
     }
     
 }

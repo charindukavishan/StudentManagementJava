@@ -6,6 +6,7 @@
 package connection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -24,6 +25,12 @@ public class StudentTableModel {
         quary.setString(6, nic);
         
         quary.executeUpdate();
+    }
+    
+    public static ResultSet getUser(String uname) throws SQLException{
+        PreparedStatement quary = MySqlConnection.getInstance().connection.prepareStatement("select * from student where uname=?");
+        quary.setString(1, uname);
+        return  quary.executeQuery();
     }
     
 }
