@@ -65,7 +65,7 @@ public class SLogIn extends javax.swing.JFrame {
         jButton1.setBorder(null);
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.MOVE_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -161,6 +161,7 @@ public class SLogIn extends javax.swing.JFrame {
         
         try {
             Boolean auth = Auth.signin(uName, password);
+            System.out.println(auth);
             if(auth) {
               dispose();
               new Home().setVisible(true);
