@@ -38,7 +38,7 @@ public class User {
         User.nic = nic;
     }
     
-    public static void resetUser(Integer id,String uname,String email,String fname,String age,String nic){
+    public static void resetUser(){
         User.id = null;
         User.uname = null;
         User.email = null;
