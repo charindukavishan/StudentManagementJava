@@ -35,4 +35,22 @@ public class StudentTableModel {
         return  quary.executeQuery();
     }
     
+    public static ResultSet getEnrolledCourses(int sId) throws SQLException{
+        PreparedStatement quary = MySqlConnection.getInstance().connection.prepareStatement("select * from student_has_course where student_id=?");
+        quary.setInt(1, sId);
+        return  quary.executeQuery();
+    }
+    
+    public static ResultSet getResults(int sId) throws SQLException{
+        PreparedStatement quary = MySqlConnection.getInstance().connection.prepareStatement("select * from student_has_course where student_id=?");
+        quary.setInt(1, sId);
+        return  quary.executeQuery();
+    }
+    
+    public static ResultSet getSemesterCourses(String semester) throws SQLException{
+        PreparedStatement quary = MySqlConnection.getInstance().connection.prepareStatement("select * from student_has_course where student_id=?");
+        quary.setString(1, semester);
+        return  quary.executeQuery();
+    }
+    
 }
