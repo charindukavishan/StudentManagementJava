@@ -12,7 +12,7 @@ package connection;
 public class User {
     
     private static User user;
-    
+    private static boolean isAdmin;
     private static Integer id;
     private static String uname;
     private static String email;
@@ -29,13 +29,14 @@ public class User {
      * @param age
      * @param nic
      */
-    public static void setUser(Integer id,String uname,String email,String fname,String age,String nic){
+    public static void setUser(Integer id,String uname,String email,String fname,String age,String nic,boolean isAdmin){
         User.id = id;
         User.uname = uname;
         User.email = email;
         User.fname = fname;
         User.age = age;
         User.nic = nic;
+        User.isAdmin = isAdmin;
     }
     
     public static void resetUser(){
@@ -45,6 +46,7 @@ public class User {
         User.fname = null;
         User.age = null;
         User.nic = null;
+        User.isAdmin = false;
     }
 
     public static User getUser() {

@@ -5,6 +5,9 @@
  */
 package studentmanagementjava;
 
+import java.awt.Cursor;
+import studentmanagementjava.Admin.AdminLogin;
+
 /**
  *
  * @author Charindu Kavishan
@@ -40,6 +43,9 @@ public class Dashboard extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(63, 125, 255));
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jPanel1MouseEntered(evt);
             }
@@ -176,6 +182,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
         jPanel1.setBackground(new java.awt.Color(0, 0, 255));
+        jPanel1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_jPanel1MouseEntered
 
     private void jPanel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseExited
@@ -184,11 +191,16 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jPanel3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseEntered
         jPanel3.setBackground(new java.awt.Color(0, 0, 255));
+        jPanel3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_jPanel3MouseEntered
 
     private void jPanel3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseExited
         jPanel3.setBackground(new java.awt.Color(63, 125, 255));
     }//GEN-LAST:event_jPanel3MouseExited
+
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        new AdminLogin().setVisible(true);
+    }//GEN-LAST:event_jPanel1MouseClicked
 
     /**
      * @param args the command line arguments

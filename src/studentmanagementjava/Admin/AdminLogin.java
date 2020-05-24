@@ -3,24 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package studentmanagementjava;
+package studentmanagementjava.Admin;
+import studentmanagementjava.*;
 import connection.Auth;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import connection.User;
+import java.awt.Cursor;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Charindu Kavishan
  */
-public class SLogIn extends javax.swing.JFrame {
+public class AdminLogin extends javax.swing.JFrame {
 
     /**
      * Creates new form SLogIn
      */
-    public SLogIn() {
+    public AdminLogin() {
         initComponents();
     }
 
@@ -66,6 +68,11 @@ public class SLogIn extends javax.swing.JFrame {
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -82,7 +89,8 @@ public class SLogIn extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 48)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Student ");
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Admin ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -99,7 +107,7 @@ public class SLogIn extends javax.swing.JFrame {
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(79, 79, 79))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(87, 87, 87))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -160,18 +168,22 @@ public class SLogIn extends javax.swing.JFrame {
         String password = String.copyValueOf(this.password.getPassword());
         
         try {
-            Boolean auth = Auth.signin(uName, password,false);
+            Boolean auth = Auth.signin(uName, password,true);
             System.out.println(auth);
             if(auth) {
               dispose();
-              new Home().setVisible(true);
+              new AdminHome().setVisible(true);
             }
             else
               JOptionPane.showMessageDialog(null, "Incorrect User Name or Password");
         } catch (SQLException ex) {
-            Logger.getLogger(SLogIn.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminLogin.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+       jButton1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_jButton1MouseEntered
 
     /**
      * @param args the command line arguments
@@ -190,20 +202,21 @@ public class SLogIn extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SLogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SLogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SLogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SLogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new SLogIn().setVisible(true);
+                //new AdminLogin().setVisible(true);
             }
         });
     }
