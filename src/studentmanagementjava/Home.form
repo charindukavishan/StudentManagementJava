@@ -901,7 +901,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="javax.swing.JPanel" name="profilePanel">
+        <Container class="javax.swing.JPanel" name="profilePanel1">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -912,83 +912,8 @@
               <CardConstraints cardName="card5"/>
             </Constraint>
           </Constraints>
-
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="email2" min="-2" pref="119" max="-2" attributes="0"/>
-                                  <Component id="UName" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
-                                  <Component id="email6" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
-                                  <Component id="email5" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
-                                  <Component id="email3" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
-                                  <Component id="email4" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="uName" max="32767" attributes="0"/>
-                                  <Component id="fName" max="32767" attributes="0"/>
-                                  <Component id="email" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="semester" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="age" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="nic" alignment="1" min="-2" pref="217" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="jLabel7" min="-2" pref="264" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace pref="802" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel7" min="-2" pref="273" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="UName" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="uName" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="email2" min="-2" max="-2" attributes="0"/>
-                          <Component id="fName" min="-2" pref="26" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="email6" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="email" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="email5" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="semester" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="email3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="age" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="email4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="nic" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="17" max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="email4">
+            <Component class="javax.swing.JLabel" name="email7">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="18" style="0"/>
@@ -996,7 +921,7 @@
                 <Property name="text" type="java.lang.String" value="NIC             :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="nic">
+            <Component class="javax.swing.JTextField" name="nic1">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1010,7 +935,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nicActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="age">
+            <Component class="javax.swing.JTextField" name="age1">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1024,7 +949,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ageActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="email3">
+            <Component class="javax.swing.JLabel" name="email8">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="18" style="0"/>
@@ -1032,7 +957,7 @@
                 <Property name="text" type="java.lang.String" value="Age             :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="email2">
+            <Component class="javax.swing.JLabel" name="email9">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="18" style="0"/>
@@ -1040,7 +965,7 @@
                 <Property name="text" type="java.lang.String" value="Full Name    :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="fName">
+            <Component class="javax.swing.JTextField" name="fName1">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1054,7 +979,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fNameActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="email">
+            <Component class="javax.swing.JTextField" name="email1">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1068,7 +993,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="uName">
+            <Component class="javax.swing.JTextField" name="uName1">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1082,7 +1007,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="uNameActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="UName">
+            <Component class="javax.swing.JLabel" name="UName1">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="18" style="0"/>
@@ -1090,14 +1015,14 @@
                 <Property name="text" type="java.lang.String" value="User Name   :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel7">
+            <Component class="javax.swing.JLabel" name="jLabel10">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/Images/person avatar.png"/>
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="email5">
+            <Component class="javax.swing.JLabel" name="email10">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="18" style="0"/>
@@ -1105,7 +1030,7 @@
                 <Property name="text" type="java.lang.String" value="Semester      :"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="semester">
+            <Component class="javax.swing.JTextField" name="semester1">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -1119,7 +1044,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="semesterActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="email6">
+            <Component class="javax.swing.JLabel" name="email11">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Times New Roman" size="18" style="0"/>

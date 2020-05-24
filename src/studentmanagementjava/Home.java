@@ -45,6 +45,7 @@ public class Home extends javax.swing.JFrame {
         this.updateProfille();
         this.updateCourses();
         this.updateResult();
+        this.updateSemesterCourses();
         activeLable = jLabel6;
         activeClass(activeLable);
     }
@@ -115,7 +116,7 @@ public class Home extends javax.swing.JFrame {
         try {
             ResultSet cm =  StudentTableModel.getSemesterCourses(User.getSemester());
             while(cm.next()){
-                myResultModel.addRow(new Object[]{cm.getInt("id"), cm.getString("name"),cm.getString("Result")});
+                semesterCourseModel.addRow(new Object[]{cm.getInt("id"), cm.getString("name"),cm.getString("semester"),cm.getString("state")});
             }
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
