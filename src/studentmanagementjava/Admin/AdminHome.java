@@ -649,7 +649,7 @@ public class AdminHome extends javax.swing.JFrame {
                         .addGroup(profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(email4)
                             .addGroup(profilePanelLayout.createSequentialGroup()
-                                .addComponent(nic, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(nic, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(1, 1, 1)))))
                 .addGap(31, 31, 31)
                 .addComponent(jLabel11)
