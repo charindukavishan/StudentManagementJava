@@ -19,6 +19,7 @@ public class User {
     private static String fname;
     private static String age;
     private static String nic;
+    private static String semester;
     
     /**
      *
@@ -74,4 +75,10 @@ public class User {
     public static String getNic() {
         return nic;
     }
+
+    public static String getSemester() {
+        return semester;
+    }
+    
+    
 }
