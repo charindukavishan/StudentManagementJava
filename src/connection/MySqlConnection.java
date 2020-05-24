@@ -22,10 +22,10 @@ public class MySqlConnection {
         
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/student","root","");
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/studentmgtdb","root","");
             System.out.println(connection);
         }catch(Exception e){
-            //System.out.println(e.getMessage());
+           e.printStackTrace();
         }
        
     }
@@ -33,6 +33,7 @@ public class MySqlConnection {
     public static MySqlConnection getInstance() throws SQLException{
         if(instance==null){
             instance = new MySqlConnection();
+            System.out.println("mysql connection get instance "+connection);
         }
         
         return instance;

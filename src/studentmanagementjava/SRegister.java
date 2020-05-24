@@ -5,7 +5,6 @@
  */
 package studentmanagementjava;
 
-import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
 import javax.swing.JPasswordField;
 import connection.MySqlConnection;
 import connection.StudentTableModel;

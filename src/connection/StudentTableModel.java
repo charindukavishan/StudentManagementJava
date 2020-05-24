@@ -28,6 +28,8 @@ public class StudentTableModel {
     }
     
     public static ResultSet getUser(String uname) throws SQLException{
+        Connection con = MySqlConnection.getInstance().connection;
+        System.out.println(con);
         PreparedStatement quary = MySqlConnection.getInstance().connection.prepareStatement("select * from student where uname=?");
         quary.setString(1, uname);
         return  quary.executeQuery();
