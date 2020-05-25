@@ -48,9 +48,36 @@ public class StudentTableModel {
     }
     
     public static ResultSet getSemesterCourses(String semester) throws SQLException{
-        PreparedStatement quary = MySqlConnection.getInstance().connection.prepareStatement("select * from student_has_course where student_id=?");
+        PreparedStatement quary = MySqlConnection.getInstance().connection.prepareStatement("select * from course where semester=?");
         quary.setString(1, semester);
         return  quary.executeQuery();
+    }
+    
+    public static boolean isEnrolled(int sId, int cId) throws SQLException{
+        PreparedStatement quary = MySqlConnection.getInstance().connection.prepareStatement("select * from student_has_course where student_id=? and course_idcourse=?");
+        quary.setInt(1, sId);
+        quary.setInt(2, cId);
+        return  quary.executeQuery().next();
+    }
+    
+    public static ResultSet getModule(int cId) throws SQLException{
+        PreparedStatement quary = MySqlConnection.getInstance().connection.prepareStatement("select * from course where idcourse=?");
+        quary.setInt(1, cId);
+        return  quary.executeQuery();
+    }
+    
+    public static void enrollModule(int sId,int cId) throws SQLException{
+        PreparedStatement quary = MySqlConnection.getInstance().connection.prepareStatement("insert into student_has_course (student_id,course_idcourse,feePaid) values (?,?,0)");
+        quary.setInt(1, sId);
+        quary.setInt(2, cId);
+        quary.executeUpdate();
+    }
+    
+    public static void unEnrollModule(int sId,int cId) throws SQLException{
+        PreparedStatement quary = MySqlConnection.getInstance().connection.prepareStatement("delete from student_has_course where student_id=? and course_idcourse=?");
+        quary.setInt(1, sId);
+        quary.setInt(2, cId);
+        quary.executeUpdate();
     }
     
 }
