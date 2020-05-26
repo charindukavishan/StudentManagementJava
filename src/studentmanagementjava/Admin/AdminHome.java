@@ -23,6 +23,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import studentmanagementjava.SLogIn;
 
 /**
@@ -1081,7 +1082,9 @@ public class AdminHome extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       new AddCourse().setVisible(true);
+        javax.swing.JFrame moduleWindow = new AddCourse();
+        moduleWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        moduleWindow.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**

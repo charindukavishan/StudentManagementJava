@@ -19,8 +19,10 @@ import connection.User;
 import javax.swing.table.DefaultTableModel;
 import connection.StudentTableModel;
 import connection.Module;
+import connection.SemesterTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
@@ -38,10 +40,13 @@ public class Home extends javax.swing.JFrame {
     javax.swing.JLabel activeLable ;
     DefaultTableCellRenderer cellRenderer;
     Module module;
+    HashMap<String, Integer> semesterMap = new HashMap<String, Integer>();
+    
+    
     DefaultTableModel myCourseModel;
     String[] courseColom = {"Course ID","Course Name","Semester"};
     DefaultTableModel myResultModel;
-    String[] resultColom = {"Course ID","Course Name","Result"};
+    String[] resultColom = {"Course ID","Course Name","Marks"};
     DefaultTableModel semesterCourseModel;
     String[] semesterCourseColom = {"Course ID","Course Name","Semester","Enroll State"};
     
@@ -52,7 +57,7 @@ public class Home extends javax.swing.JFrame {
         cellRenderer.setHorizontalAlignment(JLabel.CENTER);        
         this.updateProfille();
 //        this.updateCourses();
-        this.updateResult();
+        this.constructResult();
         this.updateSemesterCourses();
         activeLable = jLabel6;
         activeClass(activeLable);
@@ -109,16 +114,34 @@ public class Home extends javax.swing.JFrame {
         }
     }
     
+    private void constructResult(){
+        try{
+            ResultSet rs = SemesterTableModel.getAllSemesters();
+            semesterMap.clear();
+            semesterList.removeAll();
+            while(rs.next()){
+                semesterMap.put(rs.getString("name"),rs.getInt("idsemester"));
+                System.out.println(rs.getString("name"));
+                semesterList.addItem(rs.getString("name"));
+            }
+            System.out.println(semesterMap);
+        }catch(SQLException e){
+            Logger.getLogger(this.getName()).log(Level.SEVERE, null, e);
+        }
+        updateResult();
+    }
+    
     private void updateResult(){
         myResultModel = null;
         myResultModel = new DefaultTableModel();
         myResultModel.setColumnIdentifiers(resultColom);
         resultTable.setModel(myResultModel);
+        String selectedSemester = (String) semesterList.getSelectedItem();
         
         try {
-            ResultSet cm =  StudentTableModel.getResults(User.getId(),User.getSemester());
+            ResultSet cm =  StudentTableModel.getResults(User.getId(), semesterMap.get(selectedSemester));
             while(cm.next()){
-                myResultModel.addRow(new Object[]{cm.getInt("course_idcourse"), cm.getString("name")});
+                myResultModel.addRow(new Object[]{cm.getInt("course_idcourse"), cm.getString("name"), cm.getInt("marks")});
             }
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -191,7 +214,8 @@ public class Home extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         resultTable = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        semesterList = new javax.swing.JComboBox<>();
+        jLabel13 = new javax.swing.JLabel();
         enrollPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         semesterCourses = new javax.swing.JTable();
@@ -452,7 +476,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel4, java.awt.BorderLayout.LINE_START);
@@ -661,7 +685,7 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE)
                 .addGap(32, 32, 32))
         );
 
@@ -688,18 +712,21 @@ public class Home extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        resultTable.setEnabled(false);
         jScrollPane4.setViewportView(resultTable);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel12.setForeground(java.awt.Color.blue);
         jLabel12.setText("Results");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+        semesterList.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                semesterListItemStateChanged(evt);
             }
         });
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel13.setText("Select Semester");
 
         javax.swing.GroupLayout resultPanelLayout = new javax.swing.GroupLayout(resultPanel);
         resultPanel.setLayout(resultPanelLayout);
@@ -708,7 +735,10 @@ public class Home extends javax.swing.JFrame {
             .addGroup(resultPanelLayout.createSequentialGroup()
                 .addContainerGap(33, Short.MAX_VALUE)
                 .addGroup(resultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(resultPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addGap(18, 18, 18)
+                        .addComponent(semesterList, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(resultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1148, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -719,8 +749,12 @@ public class Home extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resultPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(resultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(resultPanelLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(semesterList, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
@@ -790,7 +824,7 @@ public class Home extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
                 .addGap(32, 32, 32))
         );
 
@@ -846,7 +880,7 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(307, Short.MAX_VALUE))
+                .addContainerGap(312, Short.MAX_VALUE))
         );
 
         parentPanel.add(viewAllCoursesPanel, "card6");
@@ -1115,9 +1149,9 @@ public class Home extends javax.swing.JFrame {
         updateSemesterCourses();
     }//GEN-LAST:event_moduleWindowWindowClosing
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        System.out.println(evt);
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void semesterListItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_semesterListItemStateChanged
+        this.updateResult();
+    }//GEN-LAST:event_semesterListItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -1179,11 +1213,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField fName;
     private javax.swing.JTextField fName1;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1213,6 +1247,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField semester;
     private javax.swing.JTextField semester1;
     private javax.swing.JTable semesterCourses;
+    private javax.swing.JComboBox<String> semesterList;
     private javax.swing.JTextField uName;
     private javax.swing.JTextField uName1;
     private javax.swing.JButton unenroll;

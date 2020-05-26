@@ -41,10 +41,10 @@ public class StudentTableModel {
         return  quary.executeQuery();
     }
     
-    public static ResultSet getResults(int sId,int sem) throws SQLException{
+    public static ResultSet getResults(int sId,int semId) throws SQLException{
         PreparedStatement quary = MySqlConnection.getInstance().connection.prepareStatement("select * from student_has_course left join course on student_has_course.course_idcourse=course.idcourse where student_has_course.student_id=? and course.idsem=?");
         quary.setInt(1, sId);
-        quary.setInt(2, sem);
+        quary.setInt(2, semId);
         return  quary.executeQuery();
     }
     
