@@ -52,7 +52,7 @@ public class Home extends javax.swing.JFrame {
         cellRenderer.setHorizontalAlignment(JLabel.CENTER);        
         this.updateProfille();
 //        this.updateCourses();
-//        this.updateResult();
+        this.updateResult();
         this.updateSemesterCourses();
         activeLable = jLabel6;
         activeClass(activeLable);
@@ -100,7 +100,7 @@ public class Home extends javax.swing.JFrame {
             while(cm.next()){
                 ResultSet selectModule = StudentTableModel.getModule(cm.getInt("course_idcourse"));
             while (selectModule.next()) {
-                module = new Module(selectModule.getInt("idcourse"), selectModule.getString("name"),selectModule.getString("description"),selectModule.getString("semester"),selectModule.getInt("fee"));
+                module = new Module(selectModule.getInt("idcourse"), selectModule.getString("name"),selectModule.getString("description"),selectModule.getInt("idsem"),selectModule.getInt("fee"));
             }
                 myCourseModel.addRow(new Object[]{module.getId(), module.getName(),module.getSemestor()});
             }
@@ -116,9 +116,9 @@ public class Home extends javax.swing.JFrame {
         resultTable.setModel(myResultModel);
         
         try {
-            ResultSet cm =  StudentTableModel.getResults(User.getId());
+            ResultSet cm =  StudentTableModel.getResults(User.getId(),User.getSemester());
             while(cm.next()){
-                myResultModel.addRow(new Object[]{cm.getInt("id"), cm.getString("name"),cm.getString("Result")});
+                myResultModel.addRow(new Object[]{cm.getInt("course_idcourse"), cm.getString("name")});
             }
         } catch (SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
@@ -139,7 +139,7 @@ public class Home extends javax.swing.JFrame {
             ResultSet cm =  StudentTableModel.getSemesterCourses(User.getSemester());
             while(cm.next()){
                 boolean isEnrolled = StudentTableModel.isEnrolled(User.getId(),cm.getInt("idcourse"));
-                module = new Module(cm.getInt("idcourse"), cm.getString("name"),cm.getString("description"),cm.getString("semester"),cm.getInt("fee"));
+                module = new Module(cm.getInt("idcourse"), cm.getString("name"),cm.getString("description"),cm.getInt("idsem"),cm.getInt("fee"));
                 module.setIsEnroll(isEnrolled);
                 semesterCourseModel.addRow(new Object[]{module.getId(), module.getName(),module.getSemestor(),module.isIsEnroll()});
             }
@@ -191,6 +191,7 @@ public class Home extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         resultTable = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
         enrollPanel = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         semesterCourses = new javax.swing.JTable();
@@ -619,8 +620,10 @@ public class Home extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        courseTable.setEnabled(false);
         courseTable.setMinimumSize(new java.awt.Dimension(60, 200));
         courseTable.setRowHeight(20);
+        courseTable.setRowSelectionAllowed(false);
         jScrollPane1.setViewportView(courseTable);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -691,15 +694,24 @@ public class Home extends javax.swing.JFrame {
         jLabel12.setForeground(java.awt.Color.blue);
         jLabel12.setText("Results");
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout resultPanelLayout = new javax.swing.GroupLayout(resultPanel);
         resultPanel.setLayout(resultPanelLayout);
         resultPanelLayout.setHorizontalGroup(
             resultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(resultPanelLayout.createSequentialGroup()
                 .addContainerGap(33, Short.MAX_VALUE)
-                .addGroup(resultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(resultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(resultPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
         resultPanelLayout.setVerticalGroup(
@@ -707,8 +719,10 @@ public class Home extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resultPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32))
         );
 
@@ -1048,7 +1062,7 @@ public class Home extends javax.swing.JFrame {
             ResultSet selectModule = StudentTableModel.getModule(moduleId);
             while (selectModule.next()) {
                 module = null;
-                module = new Module(selectModule.getInt("idcourse"), selectModule.getString("name"),selectModule.getString("description"),selectModule.getString("semester"),selectModule.getInt("fee"));
+                module = new Module(selectModule.getInt("idcourse"), selectModule.getString("name"),selectModule.getString("description"),selectModule.getInt("idsem"),selectModule.getInt("fee"));
                 moduleName.setText(selectModule.getString("idcourse")+" : "+selectModule.getString("name"));
                 moduleDescription.setText(selectModule.getString("description"));                
             }
@@ -1100,6 +1114,10 @@ public class Home extends javax.swing.JFrame {
     private void moduleWindowWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_moduleWindowWindowClosing
         updateSemesterCourses();
     }//GEN-LAST:event_moduleWindowWindowClosing
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        System.out.println(evt);
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1161,6 +1179,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField fName;
     private javax.swing.JTextField fName1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

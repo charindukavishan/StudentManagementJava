@@ -19,7 +19,7 @@ public class User {
     private static String fname;
     private static String age;
     private static String nic;
-    private static String semester;
+    private static int semester;
     
     /**
      *
@@ -30,14 +30,14 @@ public class User {
      * @param age
      * @param nic
      */
-    public static void setUser(Integer id,String uname,String email,String fname,String age,String nic,String semester,boolean isAdmin){
+    public static void setUser(Integer id,String uname,String email,String fname,String age,String nic,int semester,boolean isAdmin){
         User.id = id;
         User.uname = uname;
         User.email = email;
         User.fname = fname;
         User.age = age;
         User.nic = nic;
-        user.semester = semester;
+        User.semester = semester;
         User.isAdmin = isAdmin;
     }
     
@@ -79,9 +79,7 @@ public class User {
         return nic;
     }
 
-    public static String getSemester() {
+    public static int getSemester() {
         return semester;
     }
-    
-    
 }
