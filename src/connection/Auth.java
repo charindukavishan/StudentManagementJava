@@ -22,7 +22,7 @@ public class Auth {
                 if (user.getString("password").equals(password)){
                     System.out.println(password);
                     System.out.println(user.getString("password"));
-                    User.setUser(user.getInt("idadmin"), user.getString("uname"), user.getString("email"), user.getString("fname"), user.getString("age"), user.getString("nic"),"",true);
+                    User.setUser(user.getInt("idadmin"), user.getString("uname"), user.getString("email"), user.getString("fname"), user.getString("age"), user.getString("nic"),true);
                     return true;
                 }            
             }
@@ -34,7 +34,8 @@ public class Auth {
                 if (user.getString("password").equals(password)){
                     System.out.println(password);
                     System.out.println(user.getString("password"));
-                    User.setUser(user.getInt("id"), user.getString("uname"), user.getString("email"), user.getString("fname"), user.getString("age"), user.getString("nic"),user.getString("semester"),false);
+                    User.setUser(user.getInt("id"), user.getString("uname"), user.getString("email"), user.getString("fname"), user.getString("age"), user.getString("nic"),false);
+                    User.setSemester(user.getInt("idsem"));
                     return true;
                 }            
             }

@@ -14,11 +14,11 @@ public class Module {
     private int id;
     private String name;
     private String description;
-    private String semestor;
+    private int semestor;
     private int fee;
     private boolean isEnroll;
 
-    public Module(int id, String name, String description, String semestor, int fee) {
+    public Module(int id, String name, String description, int semestor, int fee) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -38,7 +38,7 @@ public class Module {
         return description;
     }
 
-    public String getSemestor() {
+    public int getSemestor() {
         return semestor;
     }
 
