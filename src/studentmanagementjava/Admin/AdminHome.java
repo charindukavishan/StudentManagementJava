@@ -63,7 +63,7 @@ public class AdminHome extends javax.swing.JFrame {
       private void fillTable(){
         
         try{
-            ResultSet rs = CourseTableModel.getAllCourses();
+           ResultSet rs = CourseTableModel.getCoursesForTable();
            ListTableModel model = ListTableModel.createModelFromResultSet( rs );
            
             courseTable3.setModel(model);
@@ -771,13 +771,21 @@ public class AdminHome extends javax.swing.JFrame {
         });
         courseTable3.setMinimumSize(new java.awt.Dimension(60, 200));
         courseTable3.setRowHeight(20);
+        courseTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                courseTable3MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                courseTable3MousePressed(evt);
+            }
+        });
         jScrollPane4.setViewportView(courseTable3);
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel14.setForeground(java.awt.Color.blue);
         jLabel14.setText("Course Modules");
 
-        jButton2.setText("View All");
+        jButton2.setText("Update");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -790,6 +798,12 @@ public class AdminHome extends javax.swing.JFrame {
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
+            }
+        });
+
+        homeSemesterList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeSemesterListActionPerformed(evt);
             }
         });
 
@@ -1074,16 +1088,45 @@ public class AdminHome extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel13MousePressed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        //            parentPanel.removeAll();
-        //            parentPanel.add(viewAllCoursesPanel);
-        //            parentPanel.repaint();
-        //            parentPanel.revalidate();
-        //            jDialog1.setVisible(true);
+        
+        try {
+            int column = 0;
+            int row = courseTable3.getSelectedRow();
+            String moduleId = courseTable3.getModel().getValueAt(row, column).toString();
+            String semester = homeSemesterList.getSelectedItem().toString();
+            new UpdateCourse(moduleId,semester).setVisible(true);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(this, "Select course module from the table to update!");
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
        new AddCourse().setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void homeSemesterListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeSemesterListActionPerformed
+        
+        String selectedSem = homeSemesterList.getSelectedItem().toString();
+        try {
+            ResultSet rs = CourseTableModel.getCoursesBySemester(selectedSem);
+            ListTableModel model = ListTableModel.createModelFromResultSet( rs );
+            courseTable3.setModel(model);
+        } catch (Exception e) {
+            Logger.getLogger(this.getName()).log(null,e.getMessage());
+        }
+    }//GEN-LAST:event_homeSemesterListActionPerformed
+
+    private void courseTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_courseTable3MouseClicked
+//        int column = 0;
+//        int row = courseTable3.getSelectedRow();
+//        String value = courseTable3.getModel().getValueAt(row, column).toString();
+//        System.out.println("selected value of column 0 "+value);
+    }//GEN-LAST:event_courseTable3MouseClicked
+
+    private void courseTable3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_courseTable3MousePressed
+        
+    }//GEN-LAST:event_courseTable3MousePressed
 
     /**
      * @param args the command line arguments

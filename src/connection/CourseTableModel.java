@@ -34,4 +34,44 @@ public class CourseTableModel {
  
         preparedStatement.executeUpdate();
     }
+    
+    public static ResultSet getCoursesForTable() throws SQLException{
+        Connection con = MySqlConnection.getInstance().connection;
+        PreparedStatement preparedStatement = con.prepareStatement("select moduleid,name,description,"
+                + "fee from course where idsem=(select idsemester from semester ORDER BY idsemester LIMIT 1)");      
+        return  preparedStatement.executeQuery();
+    }
+    
+    public static ResultSet getCoursesBySemester(String semsester) throws SQLException{
+        Connection con = MySqlConnection.getInstance().connection;
+        PreparedStatement preparedStatement = con.prepareStatement("select moduleid,name,description,"
+                + "fee from course where idsem=(select idsemester from semester where name=?)");  
+        preparedStatement.setString(1, semsester);
+        return  preparedStatement.executeQuery();
+    }
+    
+    public static ResultSet getCoursesByModuleId(String moduleId) throws SQLException{
+        Connection con = MySqlConnection.getInstance().connection;
+        PreparedStatement preparedStatement = con.prepareStatement("select * from course where moduleid=?");  
+        preparedStatement.setString(1, moduleId);
+        return  preparedStatement.executeQuery();
+    }
+    
+    public static void updateCourse(String moduleid,String name,String semesterName,
+            double fee,String description,String selectedModuleId) throws SQLException{
+        
+        Connection con = MySqlConnection.getInstance().connection;
+        PreparedStatement preparedStatement = con.prepareStatement("UPDATE course set moduleid=?, name=?,"
+                + "idsem=(select idsemester from semester where name=?),fee=?,description=? where moduleid=?");
+        preparedStatement.setString(1, moduleid);
+        preparedStatement.setString(2, name);
+        preparedStatement.setString(3, semesterName);
+        preparedStatement.setDouble(4, fee);
+        preparedStatement.setString(5, description);
+        preparedStatement.setString(6, selectedModuleId);
+ 
+        preparedStatement.executeUpdate();
+    }
+    
+    
 }
