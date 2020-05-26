@@ -30,14 +30,13 @@ public class User {
      * @param age
      * @param nic
      */
-    public static void setUser(Integer id,String uname,String email,String fname,String age,String nic,int semester,boolean isAdmin){
+    public static void setUser(Integer id,String uname,String email,String fname,String age,String nic,boolean isAdmin){
         User.id = id;
         User.uname = uname;
         User.email = email;
         User.fname = fname;
         User.age = age;
         User.nic = nic;
-        User.semester = semester;
         User.isAdmin = isAdmin;
     }
     
@@ -81,5 +80,9 @@ public class User {
 
     public static int getSemester() {
         return semester;
+    }
+
+    public static void setSemester(int semester) {
+        User.semester = semester;
     }
 }
