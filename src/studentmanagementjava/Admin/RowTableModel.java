@@ -524,6 +524,8 @@ abstract class RowTableModel<T> extends AbstractTableModel
 		StringBuffer buffer = new StringBuffer( columnName );
 		boolean isPreviousLowerCase = false;
 
+                
+                buffer.setCharAt(0, Character.toUpperCase(buffer.charAt(0)));
 		for (int i = 1; i < buffer.length(); i++)
 		{
 			boolean isCurrentUpperCase = Character.isUpperCase( buffer.charAt(i) );

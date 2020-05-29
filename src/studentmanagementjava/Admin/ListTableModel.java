@@ -255,12 +255,12 @@ public class ListTableModel extends RowTableModel<List>
 		for (int i = 1; i <= columns; i++)
 		{
 			String columnName = metaData.getColumnName(i);
-			String columnLabel = metaData.getColumnLabel(i);
-
+			String columnLabel = metaData.getColumnLabel(i);          
+                     
 			if (columnLabel.equals(columnName))
 				columnNames.add( formatColumnName(columnName) );
 			else
-				columnNames.add( columnLabel );
+				columnNames.add( formatColumnName(columnLabel) );
 		}
 
 		ListTableModel model = new ListTableModel( columnNames );

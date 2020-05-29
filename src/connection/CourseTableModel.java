@@ -37,14 +37,14 @@ public class CourseTableModel {
     
     public static ResultSet getCoursesForTable() throws SQLException{
         Connection con = MySqlConnection.getInstance().connection;
-        PreparedStatement preparedStatement = con.prepareStatement("select moduleid,name,description,"
+        PreparedStatement preparedStatement = con.prepareStatement("select moduleid as ModuleId,name,description,"
                 + "fee from course where idsem=(select idsemester from semester ORDER BY idsemester LIMIT 1)");      
         return  preparedStatement.executeQuery();
     }
     
     public static ResultSet getCoursesBySemester(String semsester) throws SQLException{
         Connection con = MySqlConnection.getInstance().connection;
-        PreparedStatement preparedStatement = con.prepareStatement("select moduleid,name,description,"
+        PreparedStatement preparedStatement = con.prepareStatement("select moduleid as Module_Id,name,description,"
                 + "fee from course where idsem=(select idsemester from semester where name=?)");  
         preparedStatement.setString(1, semsester);
         return  preparedStatement.executeQuery();
@@ -53,6 +53,13 @@ public class CourseTableModel {
     public static ResultSet getCoursesByModuleId(String moduleId) throws SQLException{
         Connection con = MySqlConnection.getInstance().connection;
         PreparedStatement preparedStatement = con.prepareStatement("select * from course where moduleid=?");  
+        preparedStatement.setString(1, moduleId);
+        return  preparedStatement.executeQuery();
+    }
+    
+     public static ResultSet getCourseByModuleId(String moduleId) throws SQLException{
+        Connection con = MySqlConnection.getInstance().connection;
+        PreparedStatement preparedStatement = con.prepareStatement("select name from course where moduleid=?");  
         preparedStatement.setString(1, moduleId);
         return  preparedStatement.executeQuery();
     }
