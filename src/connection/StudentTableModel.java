@@ -36,7 +36,7 @@ public class StudentTableModel {
     }
     
     public static ResultSet getEnrolledCourses(int sId) throws SQLException{
-        PreparedStatement quary = MySqlConnection.getInstance().connection.prepareStatement("select * from student_has_course where student_id=?");
+        PreparedStatement quary = MySqlConnection.getInstance().connection.prepareStatement("select * from student_has_course left join course on student_has_course.course_idcourse=course.idcourse where student_id=?");
         quary.setInt(1, sId);
         return  quary.executeQuery();
     }
@@ -55,7 +55,7 @@ public class StudentTableModel {
     }
     
     public static ResultSet getAllCourses() throws SQLException{
-        PreparedStatement quary = MySqlConnection.getInstance().connection.prepareStatement("select * from course");
+        PreparedStatement quary = MySqlConnection.getInstance().connection.prepareStatement("select * from course order by idsem");
         return  quary.executeQuery();
     }
     

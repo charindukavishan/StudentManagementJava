@@ -12,18 +12,24 @@ package connection;
 public class Module {
     
     private int id;
+    private String moduleid;
     private String name;
     private String description;
     private int semestor;
     private int fee;
     private boolean isEnroll;
 
-    public Module(int id, String name, String description, int semestor, int fee) {
+    public Module(int id,String moduleid, String name, String description, int semestor, int fee) {
         this.id = id;
+        this.moduleid = moduleid;
         this.name = name;
         this.description = description;
         this.semestor = semestor;
         this.fee = fee;
+    }
+
+    public String getModuleid() {
+        return moduleid;
     }
 
     public int getId() {

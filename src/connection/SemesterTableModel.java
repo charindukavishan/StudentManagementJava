@@ -21,4 +21,15 @@ public class SemesterTableModel {
       
         return  preparedStatement.executeQuery();
     }
+     public static String getSemestersName(int sId) throws SQLException{
+        Connection con = MySqlConnection.getInstance().connection;
+        PreparedStatement preparedStatement = con.prepareStatement("select * from semester where idsemester=?");
+        preparedStatement.setInt(1, sId);
+        ResultSet rs = preparedStatement.executeQuery();
+        String sName = null;
+        while(rs.next()){
+            sName =  rs.getString("name");
+        } 
+        return sName;
+    }
 }

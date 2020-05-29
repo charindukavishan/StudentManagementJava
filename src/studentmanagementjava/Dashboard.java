@@ -177,6 +177,7 @@ public class Dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
+        dispose();
         new SLogIn().setVisible(true);
     }//GEN-LAST:event_jPanel3MouseClicked
 
