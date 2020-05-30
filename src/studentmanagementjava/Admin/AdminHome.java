@@ -8,6 +8,7 @@ package studentmanagementjava.Admin;
 import connection.AdminTableModel;
 import connection.CourseTableModel;
 import connection.SemesterTableModel;
+import connection.StudentTableModel;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Image;
@@ -69,6 +70,7 @@ public class AdminHome extends javax.swing.JFrame {
             while(rs.next()){
                 homeSemesterList.addItem(rs.getString("name"));
                 resultsSemesterList.addItem(rs.getString("name"));
+                studentSemesterList.addItem(rs.getString("name"));
             }
   
         }catch(SQLException e){
@@ -84,7 +86,15 @@ public class AdminHome extends javax.swing.JFrame {
            ListTableModel model = ListTableModel.createModelFromResultSet( rs );
            courseTable3.setModel(model);
         }catch(SQLException e){
-            System.out.println(e.getMessage());
+           System.out.println(e.getMessage());
+           Logger.getLogger(this.getName()).log(Level.SEVERE, null, e);
+        }
+        
+        try {
+            ResultSet rs = StudentTableModel.getStudentsForFirstSemester();
+            ListTableModel model = ListTableModel.createModelFromResultSet( rs );
+            courseTable3.setModel(model);
+        } catch (Exception e) {
             Logger.getLogger(this.getName()).log(Level.SEVERE, null, e);
         }
         
@@ -202,7 +212,7 @@ public class AdminHome extends javax.swing.JFrame {
         jScrollPane6 = new javax.swing.JScrollPane();
         courseTable5 = new javax.swing.JTable();
         jLabel17 = new javax.swing.JLabel();
-        resultsSemesterList1 = new javax.swing.JComboBox<>();
+        studentSemesterList = new javax.swing.JComboBox<>();
         jLabel18 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         searchLabel = new javax.swing.JLabel();
@@ -335,7 +345,7 @@ public class AdminHome extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Calibri", 0, 36)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Payments");
+        jLabel5.setText("Student");
         jLabel5.setOpaque(true);
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -764,11 +774,7 @@ public class AdminHome extends javax.swing.JFrame {
         courseTable3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         courseTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Course ID", "Module Name", "Semester", "Enroll Status"
@@ -877,11 +883,7 @@ public class AdminHome extends javax.swing.JFrame {
         courseTable4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         courseTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Course ID", "Module Name", "Semester", "Enroll Status"
@@ -958,18 +960,18 @@ public class AdminHome extends javax.swing.JFrame {
         courseTable5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         courseTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Course ID", "Module Name", "Semester", "Enroll Status"
+                "Student_Id", "Name", "Nic"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -990,16 +992,33 @@ public class AdminHome extends javax.swing.JFrame {
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel17.setForeground(java.awt.Color.blue);
-        jLabel17.setText("Search results by course");
+        jLabel17.setText("Students");
 
-        resultsSemesterList1.addActionListener(new java.awt.event.ActionListener() {
+        studentSemesterList.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resultsSemesterList1ActionPerformed(evt);
+                studentSemesterListActionPerformed(evt);
             }
         });
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel18.setText("Select Semester");
+
+        jTextField1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField1FocusGained(evt);
+            }
+        });
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout studentPanelLayout = new javax.swing.GroupLayout(studentPanel);
         studentPanel.setLayout(studentPanelLayout);
@@ -1013,7 +1032,7 @@ public class AdminHome extends javax.swing.JFrame {
                         .addGap(61, 61, 61)
                         .addComponent(jLabel18)
                         .addGap(18, 18, 18)
-                        .addComponent(resultsSemesterList1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(studentSemesterList, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(searchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
@@ -1028,7 +1047,7 @@ public class AdminHome extends javax.swing.JFrame {
                 .addGroup(studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(resultsSemesterList1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(studentSemesterList, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(searchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1315,7 +1334,11 @@ public class AdminHome extends javax.swing.JFrame {
     }//GEN-LAST:event_courseTable3MousePressed
 
     private void courseTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_courseTable4MouseClicked
-         try {
+     
+    }//GEN-LAST:event_courseTable4MouseClicked
+
+    private void courseTable4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_courseTable4MousePressed
+           try {
             int column = 0;
             int row = courseTable4.getSelectedRow();
             String moduleId = courseTable4.getModel().getValueAt(row, column).toString();
@@ -1326,12 +1349,8 @@ public class AdminHome extends javax.swing.JFrame {
             ResultsByCourseWindow.setVisible(true);
             
         } catch (ArrayIndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(this, "Select course module from the table to update!");
+            Logger.getLogger(this.getName()).log(Level.SEVERE, e.getMessage(), e);
         }
-    }//GEN-LAST:event_courseTable4MouseClicked
-
-    private void courseTable4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_courseTable4MousePressed
-        // TODO add your handling code here:
     }//GEN-LAST:event_courseTable4MousePressed
 
     private void resultsSemesterListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultsSemesterListActionPerformed
@@ -1352,12 +1371,56 @@ public class AdminHome extends javax.swing.JFrame {
     }//GEN-LAST:event_courseTable5MouseClicked
 
     private void courseTable5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_courseTable5MousePressed
-        // TODO add your handling code here:
+        try {
+            int column = 0;
+            int row = courseTable5.getSelectedRow();
+            String studentId = courseTable5.getModel().getValueAt(row, column).toString();
+            
+            javax.swing.JFrame StudentDetailsWindow = new StudentDetails(studentId);
+            StudentDetailsWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            StudentDetailsWindow.setVisible(true);
+            
+        } catch (ArrayIndexOutOfBoundsException e) {
+            Logger.getLogger(this.getName()).log(Level.SEVERE, e.getMessage(), e);
+        }
     }//GEN-LAST:event_courseTable5MousePressed
 
-    private void resultsSemesterList1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resultsSemesterList1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_resultsSemesterList1ActionPerformed
+    private void studentSemesterListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentSemesterListActionPerformed
+        String selectedSem = studentSemesterList.getSelectedItem().toString();
+        try {
+            ResultSet rs = StudentTableModel.getStudentsBySemesterForTable(selectedSem);
+            ListTableModel model = ListTableModel.createModelFromResultSet( rs );
+            courseTable5.setModel(model);
+        } catch (Exception e) {
+            Logger.getLogger(this.getName()).log(null,e.getMessage());
+        }
+    }//GEN-LAST:event_studentSemesterListActionPerformed
+
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+        
+    }//GEN-LAST:event_jTextField1FocusGained
+
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+      
+    }//GEN-LAST:event_jTextField1KeyPressed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+         
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+         //System.out.println(jTextField1.getText());
+        String nameSegment = jTextField1.getText();
+        String semester = studentSemesterList.getSelectedItem().toString();
+        try {
+            ResultSet rs = StudentTableModel.getStudentsFromSearch(nameSegment,semester);
+            ListTableModel model = ListTableModel.createModelFromResultSet( rs );
+            courseTable5.setModel(model);
+        } catch (Exception e) {
+            Logger.getLogger(this.getName()).log(null,e.getMessage());
+        }
+         
+    }//GEN-LAST:event_jTextField1KeyReleased
 
     /**
      * @param args the command line arguments
@@ -1451,9 +1514,9 @@ public class AdminHome extends javax.swing.JFrame {
     private javax.swing.JLabel psLabel;
     private javax.swing.JPanel resultsPanel;
     private javax.swing.JComboBox<String> resultsSemesterList;
-    private javax.swing.JComboBox<String> resultsSemesterList1;
     private javax.swing.JLabel searchLabel;
     private javax.swing.JPanel studentPanel;
+    private javax.swing.JComboBox<String> studentSemesterList;
     private javax.swing.JTextField uname;
     private javax.swing.JPanel viewAllCoursesPanel;
     // End of variables declaration//GEN-END:variables

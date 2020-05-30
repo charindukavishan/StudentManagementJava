@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package connection;
+import static java.lang.Math.E;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -112,4 +113,33 @@ public class StudentTableModel {
         return  quary.executeQuery();
     }
     
+    public static ResultSet getStudentsBySemesterForTable(String semester) throws SQLException{
+        Connection con = MySqlConnection.getInstance().connection;
+        PreparedStatement preparedStatement = con.prepareStatement("select id as Student_Id,fname as Name,nic from student "
+                + "where idsem=(select idsemester from semester where name=?)");
+        preparedStatement.setString(1, semester);
+        return  preparedStatement.executeQuery();
+    }
+    
+    public static ResultSet getStudentsForFirstSemester() throws SQLException{
+        Connection con = MySqlConnection.getInstance().connection;
+        PreparedStatement preparedStatement = con.prepareStatement("select id as Student_Id,fname as Name,nic from student "
+                + "where idsem=(select idsemester from semester ORDER BY idsemester LIMIT 1)");   
+        return  preparedStatement.executeQuery();
+    }
+    
+    public static ResultSet getStudentsFromSearch(String name,String semester) throws SQLException{
+        Connection con = MySqlConnection.getInstance().connection;
+        PreparedStatement preparedStatement = con.prepareStatement("select id as Student_Id,fname as Name,nic from student "
+                + "where idsem=(select idsemester from semester where name=?) and fname like '"+name+"%'"); 
+        preparedStatement.setString(1, semester);
+        return  preparedStatement.executeQuery();
+    }
+    
+      public static ResultSet getStudentDetails(int id) throws SQLException{
+        Connection con = MySqlConnection.getInstance().connection;
+        PreparedStatement preparedStatement = con.prepareStatement("select * from student where id=?");
+        preparedStatement.setInt(1, id);
+        return  preparedStatement.executeQuery();
+    }
 }

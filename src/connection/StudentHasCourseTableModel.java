@@ -17,7 +17,7 @@ import java.sql.SQLException;
 public class StudentHasCourseTableModel {
     
     public static ResultSet getResultsForTable(String moduleId) throws SQLException{
-        System.out.println(moduleId);
+        //System.out.println(moduleId);
         Connection con = MySqlConnection.getInstance().connection;
         PreparedStatement preparedStatement = con.prepareStatement("SELECT student_id as Student_Id,"
                 + " fname as Student_Name,marks as Results"
@@ -29,7 +29,7 @@ public class StudentHasCourseTableModel {
     }
     
      public static void UpdateResults(Double marks,String moduleId,int studentId) throws SQLException{
-         System.out.println(moduleId);
+        //System.out.println(moduleId);
         Connection con = MySqlConnection.getInstance().connection;
         PreparedStatement preparedStatement = con.prepareStatement("update student_has_course"
                 + " set marks="+marks+" where student_id=? and course_idcourse=(select idcourse"
@@ -41,4 +41,18 @@ public class StudentHasCourseTableModel {
         preparedStatement.executeUpdate();
      }
     
+    public static ResultSet getResultsOfStudent(int studentId,String semester) throws SQLException{
+        
+        Connection con = MySqlConnection.getInstance().connection;
+        PreparedStatement preparedStatement = con.prepareStatement("SELECT moduleid as Module_Id,"
+                + " course.name as Module_Name,marks as Results"
+                + " FROM student_has_course join course join semester"
+                + " on student_has_course.course_idcourse=course.idcourse"
+                + " and course.idsem=semester.idsemester"
+                + " where student_has_course.student_id=? and semester.name=?");  
+        preparedStatement.setInt(1, studentId);
+        preparedStatement.setString(2, semester);
+        
+        return  preparedStatement.executeQuery();
+    }
 }
