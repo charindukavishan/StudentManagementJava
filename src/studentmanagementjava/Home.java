@@ -1308,7 +1308,7 @@ public class Home extends javax.swing.JFrame {
             JTable source = (JTable)evt.getSource();
             int row = source.rowAtPoint( evt.getPoint() );
 //            int column = source.columnAtPoint( evt.getPoint() );
-            int moduleId= (int) source.getModel().getValueAt(row, 0);
+            String moduleId= (String) source.getModel().getValueAt(row, 0);
             enroll.setEnabled(!(boolean) source.getModel().getValueAt(row, 3));
             unenroll.setEnabled((boolean) source.getModel().getValueAt(row, 3));
         try {
