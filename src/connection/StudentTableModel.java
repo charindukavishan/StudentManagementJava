@@ -71,9 +71,15 @@ public class StudentTableModel {
         return  quary.executeQuery().next();
     }
     
-    public static ResultSet getModule(String cId) throws SQLException{
+    public static ResultSet getModule(String moduleId) throws SQLException{
         PreparedStatement quary = MySqlConnection.getInstance().connection.prepareStatement("select * from course where moduleid=?");
-        quary.setString(1, cId);
+        quary.setString(1, moduleId);
+        return  quary.executeQuery();
+    }
+    
+    public static ResultSet getModule(Integer courseId) throws SQLException{
+        PreparedStatement quary = MySqlConnection.getInstance().connection.prepareStatement("select * from course where idcourse=?");
+        quary.setInt(1, courseId);
         return  quary.executeQuery();
     }
     
