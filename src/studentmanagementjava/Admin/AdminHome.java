@@ -26,6 +26,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import studentmanagementjava.SLogIn;
+import studentmanagementjava.SRegister;
 
 /**
  *
@@ -33,6 +34,7 @@ import studentmanagementjava.SLogIn;
  */
 public class AdminHome extends javax.swing.JFrame {
 
+    javax.swing.JFrame StudentDetailsWindow=null;
     /**
      * Creates new form Home
      */
@@ -46,6 +48,7 @@ public class AdminHome extends javax.swing.JFrame {
         addSemesterList();
         fillTables(); 
         loadImages();
+        hidePassword();
     }
     
      private void loadImages(){
@@ -81,22 +84,22 @@ public class AdminHome extends javax.swing.JFrame {
     
       private void fillTables(){
         
-        try{
-           ResultSet rs = CourseTableModel.getCoursesForTable();
-           ListTableModel model = ListTableModel.createModelFromResultSet( rs );
-           courseTable3.setModel(model);
-        }catch(SQLException e){
-           System.out.println(e.getMessage());
-           Logger.getLogger(this.getName()).log(Level.SEVERE, null, e);
-        }
+//        try{
+//           ResultSet rs = CourseTableModel.getCoursesForTable();
+//           ListTableModel model = ListTableModel.createModelFromResultSet( rs );
+//           courseTable3.setModel(model);
+//        }catch(SQLException e){
+//           System.out.println(e.getMessage());
+//           Logger.getLogger(this.getName()).log(Level.SEVERE, null, e);
+//        }
         
-        try {
-            ResultSet rs = StudentTableModel.getStudentsForFirstSemester();
-            ListTableModel model = ListTableModel.createModelFromResultSet( rs );
-            courseTable3.setModel(model);
-        } catch (Exception e) {
-            Logger.getLogger(this.getName()).log(Level.SEVERE, null, e);
-        }
+//        try {
+//            ResultSet rs = StudentTableModel.getStudentsForFirstSemester();
+//            ListTableModel model = ListTableModel.createModelFromResultSet( rs );
+//            courseTable3.setModel(model);
+//        } catch (Exception e) {
+//            Logger.getLogger(this.getName()).log(Level.SEVERE, null, e);
+//        }
         
     }
     
@@ -116,7 +119,7 @@ public class AdminHome extends javax.swing.JFrame {
     
     private void refreshProfilePanel(){
         this.updateProfille();
-        this.hidePassword();
+      //this.hidePassword();
  
     }
     
@@ -166,14 +169,6 @@ public class AdminHome extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         parentPanel = new javax.swing.JPanel();
-        enrollPanel = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        courseTable2 = new javax.swing.JTable();
-        jLabel10 = new javax.swing.JLabel();
-        viewAllCoursesPanel = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        courseTable1 = new javax.swing.JTable();
-        jLabel9 = new javax.swing.JLabel();
         profilePanel = new javax.swing.JPanel();
         email4 = new javax.swing.JLabel();
         nic = new javax.swing.JTextField();
@@ -197,8 +192,6 @@ public class AdminHome extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         courseTable3 = new javax.swing.JTable();
         jLabel14 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         homeSemesterList = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
@@ -216,6 +209,7 @@ public class AdminHome extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         searchLabel = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -234,7 +228,7 @@ public class AdminHome extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(1137, Short.MAX_VALUE))
+                .addContainerGap(932, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -379,137 +373,12 @@ public class AdminHome extends javax.swing.JFrame {
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel4, java.awt.BorderLayout.LINE_START);
 
         parentPanel.setLayout(new java.awt.CardLayout());
-
-        enrollPanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        courseTable2.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Course ID", "Module Name", "Semester", "Enroll Status"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        courseTable2.setColumnSelectionAllowed(true);
-        courseTable2.getTableHeader().setReorderingAllowed(false);
-        courseTable2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                courseTable2MouseClicked(evt);
-            }
-        });
-        jScrollPane3.setViewportView(courseTable2);
-        courseTable2.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (courseTable2.getColumnModel().getColumnCount() > 0) {
-            courseTable2.getColumnModel().getColumn(0).setHeaderValue("Course ID");
-            courseTable2.getColumnModel().getColumn(1).setHeaderValue("Module Name");
-            courseTable2.getColumnModel().getColumn(2).setHeaderValue("Semester");
-            courseTable2.getColumnModel().getColumn(3).setHeaderValue("Enroll Status");
-        }
-
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel10.setText("Select course to enroll :");
-
-        javax.swing.GroupLayout enrollPanelLayout = new javax.swing.GroupLayout(enrollPanel);
-        enrollPanel.setLayout(enrollPanelLayout);
-        enrollPanelLayout.setHorizontalGroup(
-            enrollPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(enrollPanelLayout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addGroup(enrollPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(368, Short.MAX_VALUE))
-        );
-        enrollPanelLayout.setVerticalGroup(
-            enrollPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(enrollPanelLayout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(220, Short.MAX_VALUE))
-        );
-
-        parentPanel.add(enrollPanel, "card2");
-
-        viewAllCoursesPanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        courseTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Course ID", "Module Name", "Semester", "Enroll Status"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(courseTable1);
-        if (courseTable1.getColumnModel().getColumnCount() > 0) {
-            courseTable1.getColumnModel().getColumn(0).setHeaderValue("Course ID");
-            courseTable1.getColumnModel().getColumn(1).setHeaderValue("Module Name");
-            courseTable1.getColumnModel().getColumn(2).setHeaderValue("Semester");
-            courseTable1.getColumnModel().getColumn(3).setHeaderValue("Enroll Status");
-        }
-
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel9.setText("All Course Modules");
-
-        javax.swing.GroupLayout viewAllCoursesPanelLayout = new javax.swing.GroupLayout(viewAllCoursesPanel);
-        viewAllCoursesPanel.setLayout(viewAllCoursesPanelLayout);
-        viewAllCoursesPanelLayout.setHorizontalGroup(
-            viewAllCoursesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(viewAllCoursesPanelLayout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addGroup(viewAllCoursesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 734, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addContainerGap(414, Short.MAX_VALUE))
-        );
-        viewAllCoursesPanelLayout.setVerticalGroup(
-            viewAllCoursesPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(viewAllCoursesPanelLayout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(246, Short.MAX_VALUE))
-        );
-
-        parentPanel.add(viewAllCoursesPanel, "card6");
 
         profilePanel.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -518,7 +387,7 @@ public class AdminHome extends javax.swing.JFrame {
 
         nic.setEditable(false);
         nic.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        nic.setBorder(null);
+        nic.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         nic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nicActionPerformed(evt);
@@ -527,7 +396,7 @@ public class AdminHome extends javax.swing.JFrame {
 
         age.setEditable(false);
         age.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        age.setBorder(null);
+        age.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         age.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ageActionPerformed(evt);
@@ -542,7 +411,7 @@ public class AdminHome extends javax.swing.JFrame {
 
         fname.setEditable(false);
         fname.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        fname.setBorder(null);
+        fname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         fname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fnameActionPerformed(evt);
@@ -551,7 +420,7 @@ public class AdminHome extends javax.swing.JFrame {
 
         email.setEditable(false);
         email.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        email.setBorder(null);
+        email.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 emailActionPerformed(evt);
@@ -560,7 +429,7 @@ public class AdminHome extends javax.swing.JFrame {
 
         uname.setEditable(false);
         uname.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        uname.setBorder(null);
+        uname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         uname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 unameActionPerformed(evt);
@@ -577,7 +446,7 @@ public class AdminHome extends javax.swing.JFrame {
 
         lname.setEditable(false);
         lname.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        lname.setBorder(null);
+        lname.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 lnameActionPerformed(evt);
@@ -619,7 +488,7 @@ public class AdminHome extends javax.swing.JFrame {
 
         psField.setEditable(false);
         psField.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        psField.setBorder(null);
+        psField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         psField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 psFieldActionPerformed(evt);
@@ -717,7 +586,7 @@ public class AdminHome extends javax.swing.JFrame {
                         .addComponent(psLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(psField, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(328, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
         profilePanelLayout.setVerticalGroup(
             profilePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -764,7 +633,7 @@ public class AdminHome extends javax.swing.JFrame {
                     .addComponent(jLabel11)
                     .addComponent(jLabel12)
                     .addComponent(jLabel13))
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
         );
 
         parentPanel.add(profilePanel, "card5");
@@ -804,15 +673,6 @@ public class AdminHome extends javax.swing.JFrame {
         jLabel14.setForeground(java.awt.Color.blue);
         jLabel14.setText("Course Modules");
 
-        jButton2.setText("Update");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Add Course");
-
         jButton4.setText("Add Course");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -834,27 +694,18 @@ public class AdminHome extends javax.swing.JFrame {
         coursesPanel1Layout.setHorizontalGroup(
             coursesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(coursesPanel1Layout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(coursesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(coursesPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32))
                     .addGroup(coursesPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel8)
                         .addGap(18, 18, 18)
                         .addComponent(homeSemesterList, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92))))
-            .addGroup(coursesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(coursesPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jButton3)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32))
         );
         coursesPanel1Layout.setVerticalGroup(
             coursesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -862,18 +713,12 @@ public class AdminHome extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(coursesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(homeSemesterList, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
                 .addGap(32, 32, 32))
-            .addGroup(coursesPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(coursesPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jButton3)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         parentPanel.add(coursesPanel1, "card4");
@@ -927,7 +772,7 @@ public class AdminHome extends javax.swing.JFrame {
         resultsPanelLayout.setHorizontalGroup(
             resultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resultsPanelLayout.createSequentialGroup()
-                .addContainerGap(46, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(resultsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(resultsPanelLayout.createSequentialGroup()
                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -950,7 +795,7 @@ public class AdminHome extends javax.swing.JFrame {
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         parentPanel.add(resultsPanel, "card4");
@@ -960,11 +805,7 @@ public class AdminHome extends javax.swing.JFrame {
         courseTable5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         courseTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Student_Id", "Name", "Nic"
@@ -1020,23 +861,32 @@ public class AdminHome extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton1.setText("Register Student");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout studentPanelLayout = new javax.swing.GroupLayout(studentPanel);
         studentPanel.setLayout(studentPanelLayout);
         studentPanelLayout.setHorizontalGroup(
             studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, studentPanelLayout.createSequentialGroup()
+            .addGroup(studentPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(studentPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)
                         .addComponent(jLabel18)
                         .addGap(18, 18, 18)
                         .addComponent(studentSemesterList, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(searchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(29, 29, 29)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(104, 104, 104)
+                        .addComponent(jButton1))
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 1144, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1044,16 +894,18 @@ public class AdminHome extends javax.swing.JFrame {
             studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, studentPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
+                .addGroup(studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(searchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(studentPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(studentSemesterList, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(searchLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         parentPanel.add(studentPanel, "card4");
@@ -1174,15 +1026,6 @@ public class AdminHome extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_unameActionPerformed
 
-    private void courseTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_courseTable2MouseClicked
-            JTable source = (JTable)evt.getSource();
-            int row = source.rowAtPoint( evt.getPoint() );
-            int column = source.columnAtPoint( evt.getPoint() );
-            String s=source.getModel().getValueAt(row, column)+"";
-
-            JOptionPane.showMessageDialog(null, s);
-    }//GEN-LAST:event_courseTable2MouseClicked
-
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         User.resetUser();
         dispose();
@@ -1216,13 +1059,13 @@ public class AdminHome extends javax.swing.JFrame {
         psField.setVisible(true);
         psField.setEditable(true);
         
-        fname.setBackground(Color.yellow);
-        lname.setBackground(Color.yellow);
-        age.setBackground(Color.yellow);
-        email.setBackground(Color.yellow);
-        uname.setBackground(Color.yellow);
-        nic.setBackground(Color.yellow);
-        psField.setBackground(Color.yellow);
+//        fname.setBackground(Color.yellow);
+//        lname.setBackground(Color.yellow);
+//        age.setBackground(Color.yellow);
+//        email.setBackground(Color.yellow);
+//        uname.setBackground(Color.yellow);
+//        nic.setBackground(Color.yellow);
+//        psField.setBackground(Color.yellow);
         //fname.setOpaque(true);
         
     }//GEN-LAST:event_jLabel11MouseClicked
@@ -1286,24 +1129,6 @@ public class AdminHome extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel13MousePressed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        try {
-            int column = 0;
-            int row = courseTable3.getSelectedRow();
-            String moduleId = courseTable3.getModel().getValueAt(row, column).toString();
-            String semester = homeSemesterList.getSelectedItem().toString();
-            
-            javax.swing.JFrame updateCourseWindow = new UpdateCourse(moduleId,semester);
-            updateCourseWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-            updateCourseWindow.setVisible(true);
-   
-        } catch (ArrayIndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(this, "Select course module from the table to update!");
-        }
-        
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         javax.swing.JFrame moduleWindow = new AddCourse();
         moduleWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -1330,7 +1155,19 @@ public class AdminHome extends javax.swing.JFrame {
     }//GEN-LAST:event_courseTable3MouseClicked
 
     private void courseTable3MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_courseTable3MousePressed
-        
+           try {
+            int column = 0;
+            int row = courseTable3.getSelectedRow();
+            String moduleId = courseTable3.getModel().getValueAt(row, column).toString();
+            String semester = homeSemesterList.getSelectedItem().toString();
+            
+            javax.swing.JFrame updateCourseWindow = new UpdateCourse(moduleId,semester);
+            updateCourseWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            updateCourseWindow.setVisible(true);
+   
+        } catch (ArrayIndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(this, "Select course module from the table to update!");
+        }
     }//GEN-LAST:event_courseTable3MousePressed
 
     private void courseTable4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_courseTable4MouseClicked
@@ -1371,18 +1208,31 @@ public class AdminHome extends javax.swing.JFrame {
     }//GEN-LAST:event_courseTable5MouseClicked
 
     private void courseTable5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_courseTable5MousePressed
-        try {
+        if(StudentDetailsWindow==null){
+             try {
             int column = 0;
             int row = courseTable5.getSelectedRow();
             String studentId = courseTable5.getModel().getValueAt(row, column).toString();
-            
-            javax.swing.JFrame StudentDetailsWindow = new StudentDetails(studentId);
-            StudentDetailsWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+          
+            this.StudentDetailsWindow = new StudentDetails(studentId);
+            StudentDetailsWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            StudentDetailsWindow.setLocationRelativeTo(null);
             StudentDetailsWindow.setVisible(true);
             
-        } catch (ArrayIndexOutOfBoundsException e) {
-            Logger.getLogger(this.getName()).log(Level.SEVERE, e.getMessage(), e);
+            StudentDetailsWindow.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                    StudentDetailsWindow=null;
+                }
+                });
+    
+            } catch (ArrayIndexOutOfBoundsException e) {
+                Logger.getLogger(this.getName()).log(Level.SEVERE, e.getMessage(), e);
+            }
+        }else{
+           JOptionPane.showMessageDialog(this,"Student Details window is already open");
         }
+       
     }//GEN-LAST:event_courseTable5MousePressed
 
     private void studentSemesterListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentSemesterListActionPerformed
@@ -1421,6 +1271,12 @@ public class AdminHome extends javax.swing.JFrame {
         }
          
     }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         javax.swing.JFrame StudentRegisterWindow = new SRegister();
+         StudentRegisterWindow.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+         StudentRegisterWindow.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1461,8 +1317,6 @@ public class AdminHome extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel UName;
     private javax.swing.JTextField age;
-    private javax.swing.JTable courseTable1;
-    private javax.swing.JTable courseTable2;
     private javax.swing.JTable courseTable3;
     private javax.swing.JTable courseTable4;
     private javax.swing.JTable courseTable5;
@@ -1473,14 +1327,11 @@ public class AdminHome extends javax.swing.JFrame {
     private javax.swing.JLabel email4;
     private javax.swing.JLabel email6;
     private javax.swing.JLabel email7;
-    private javax.swing.JPanel enrollPanel;
     private javax.swing.JTextField fname;
     private javax.swing.JComboBox<String> homeSemesterList;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -1496,12 +1347,9 @@ public class AdminHome extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
@@ -1518,6 +1366,5 @@ public class AdminHome extends javax.swing.JFrame {
     private javax.swing.JPanel studentPanel;
     private javax.swing.JComboBox<String> studentSemesterList;
     private javax.swing.JTextField uname;
-    private javax.swing.JPanel viewAllCoursesPanel;
     // End of variables declaration//GEN-END:variables
 }

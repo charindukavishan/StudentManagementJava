@@ -43,6 +43,7 @@ public class UpdateCourse extends javax.swing.JFrame {
                 modfee.setText(rs.getString("fee"));
             }    
         }catch(Exception e){
+            e.printStackTrace();
             Logger.getLogger(this.getName()).log(Level.SEVERE, null, e);
         }
      

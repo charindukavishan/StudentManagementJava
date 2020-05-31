@@ -3,28 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/connection/User.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/studentmanagementjava/Admin/ListTableModel.java</file>
             <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/studentmanagementjava/SRegister.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/studentmanagementjava/Admin/UpdateCourse.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/connection/CourseTableModel.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/studentmanagementjava/Dashboard.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/connection/SemesterTableModel.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/connection/Module.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/studentmanagementjava/Admin/StudentDetails.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/studentmanagementjava/SLogIn.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/connection/StudentHasCourseTableModel.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/studentmanagementjava/Admin/ResultsByCourse.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/connection/MySqlConnection.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/studentmanagementjava/activeLable.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/studentmanagementjava/Admin/RowTableModel.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/connection/Auth.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/studentmanagementjava/StudentManagementJava.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/connection/StudentTableModel.java</file>
             <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/studentmanagementjava/Admin/AdminHome.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/studentmanagementjava/Admin/AdminLogin.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/connection/AdminTableModel.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/studentmanagementjava/Admin/AddCourse.java</file>
+            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/connection/StudentTableModel.java</file>
             <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/studentmanagementjava/Home.java</file>
         </group>
     </open-files>

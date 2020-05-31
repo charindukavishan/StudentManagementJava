@@ -165,7 +165,7 @@ public class Home extends javax.swing.JFrame {
         try {
             ResultSet cm =  StudentTableModel.getEnrolledCourses(User.getId());
             while(cm.next()){
-                ResultSet selectModule = StudentTableModel.getModule(cm.getInt("course_idcourse"));
+                ResultSet selectModule = StudentTableModel.getModule(cm.getString("moduleid"));
             while (selectModule.next()) {
                 module = new Module(selectModule.getInt("idcourse"),cm.getString("moduleid"), selectModule.getString("name"),selectModule.getString("description"),selectModule.getInt("idsem"),selectModule.getInt("fee"));
             }

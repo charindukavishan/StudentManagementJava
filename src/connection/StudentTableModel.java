@@ -16,15 +16,19 @@ import java.sql.SQLException;
  */
 public class StudentTableModel {
 
-    public static void insert(String uname,String email,String password,String fname,String age,String nic) throws SQLException{
-        PreparedStatement quary = MySqlConnection.getInstance().connection.prepareStatement("insert into student (uname,email,password,fname,age,nic) values (?,?,?,?,?,?)");
+    public static void insert(String uname,String email,String password,String fname,int age,String nic,double regFee,double paidAmount, String semester) throws SQLException{
+        PreparedStatement quary = MySqlConnection.getInstance().connection.prepareStatement("insert into student"
+                + " (uname,email,password,fname,age,nic,registrationFee,paidAmount,idsem)"
+                + " values (?,?,?,?,?,?,?,?,(select idsemester from semester where name=?))");
         quary.setString(1, uname);
         quary.setString(2, email);
         quary.setString(3, password);
         quary.setString(4, fname);
-        quary.setString(5, age);
+        quary.setInt(5, age);
         quary.setString(6, nic);
-        
+        quary.setDouble(7,regFee);
+        quary.setDouble(8,paidAmount);
+        quary.setString(9, semester);
         quary.executeUpdate();
     }
     
@@ -138,8 +142,36 @@ public class StudentTableModel {
     
       public static ResultSet getStudentDetails(int id) throws SQLException{
         Connection con = MySqlConnection.getInstance().connection;
-        PreparedStatement preparedStatement = con.prepareStatement("select * from student where id=?");
+        PreparedStatement preparedStatement = con.prepareStatement("select id,uname,email,password,fname,"
+                + "age,nic,registrationFee,paidAmount,(select name from semester where idsemester=idsem)"
+                + " as semester from student where id=?");
         preparedStatement.setInt(1, id);
         return  preparedStatement.executeQuery();
     }
+      
+      
+    public static void updateStudent(int id,String uname,String email,String password,String fname,int age,String nic,
+            double registrationFee,double paidAmount,String semester) throws SQLException{
+        
+        
+        Connection con = MySqlConnection.getInstance().connection;
+        PreparedStatement preparedStatement = con.prepareStatement("UPDATE student set uname=?, email=?,password=?,"
+                + " fname=?, age=?, nic=?, registrationFee=?, paidAmount=?,"
+                + "idsem=(select idsemester from semester where name=?)"
+                + "where id=?");
+        preparedStatement.setString(1, uname);
+        preparedStatement.setString(2, email);
+        preparedStatement.setString(3, password);
+        preparedStatement.setString(4, fname);
+        preparedStatement.setInt(5, age);
+        preparedStatement.setString(6, nic);
+        preparedStatement.setDouble(7, registrationFee);
+        preparedStatement.setDouble(8, paidAmount);
+        preparedStatement.setString(9, semester);
+        preparedStatement.setInt(10, id);
+        
+        
+        preparedStatement.executeUpdate();
+    }
+    
 }
