@@ -84,12 +84,13 @@ public class UpdateCourse extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         semCombo = new javax.swing.JComboBox<>();
         moddescription = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
         jLabel14.setForeground(java.awt.Color.blue);
         jLabel14.setText("Update Course");
 
@@ -99,10 +100,10 @@ public class UpdateCourse extends javax.swing.JFrame {
             }
         });
 
-        UName.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        UName.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
         UName.setText("Module ID");
 
-        lEmail.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lEmail.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
         lEmail.setText("Module Name");
 
         modname.addActionListener(new java.awt.event.ActionListener() {
@@ -111,10 +112,10 @@ public class UpdateCourse extends javax.swing.JFrame {
             }
         });
 
-        email1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        email1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
         email1.setText("Description");
 
-        email2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        email2.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
         email2.setText("Fee");
 
         modfee.addActionListener(new java.awt.event.ActionListener() {
@@ -123,11 +124,15 @@ public class UpdateCourse extends javax.swing.JFrame {
             }
         });
 
-        email3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        email3.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
         email3.setText("Semester");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 24)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/icons8-update-64.png"))); // NOI18N
         jButton1.setText("Update");
+        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.blue, 2));
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -147,7 +152,6 @@ public class UpdateCourse extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -162,15 +166,19 @@ public class UpdateCourse extends javax.swing.JFrame {
                             .addComponent(modfee)
                             .addComponent(modid)
                             .addComponent(modname)
-                            .addComponent(moddescription))))
-                .addContainerGap(104, Short.MAX_VALUE))
+                            .addComponent(moddescription)))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(82, 82, 82)
+                .addGap(33, 33, 33)
                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(UName)
                     .addComponent(modid, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -189,11 +197,11 @@ public class UpdateCourse extends javax.swing.JFrame {
                         .addGap(32, 32, 32)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(email3)
-                            .addComponent(semCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(102, 102, 102)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(semCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(moddescription, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addGap(102, 102, 102)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -284,6 +292,7 @@ public class UpdateCourse extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lEmail;
     private javax.swing.JTextField moddescription;
     private javax.swing.JTextField modfee;
