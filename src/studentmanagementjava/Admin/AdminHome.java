@@ -25,6 +25,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import studentmanagementjava.Dashboard;
 import studentmanagementjava.SLogIn;
 import studentmanagementjava.SRegister;
 
@@ -1073,7 +1074,7 @@ public class AdminHome extends javax.swing.JFrame {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         User.resetUser();
         dispose();
-        new SLogIn().setVisible(true);        
+        new Dashboard().setVisible(true);        
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked

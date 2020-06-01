@@ -1323,6 +1323,7 @@ public class Home extends javax.swing.JFrame {
         }
 //
             moduleWindow.setVisible(true);
+            moduleWindow.setLocationRelativeTo(null);
     }//GEN-LAST:event_semesterCoursesMouseClicked
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -1374,6 +1375,7 @@ public class Home extends javax.swing.JFrame {
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         allModules();
         allModuleWidow.setVisible(true);
+        allModuleWidow.setLocationRelativeTo(null);
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**

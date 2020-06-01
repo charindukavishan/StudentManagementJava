@@ -172,7 +172,9 @@ public class AdminLogin extends javax.swing.JFrame {
             System.out.println(auth);
             if(auth) {
               dispose();
-              new AdminHome().setVisible(true);
+              AdminHome adminHomeWindow = new AdminHome();
+              adminHomeWindow.setVisible(true);
+              adminHomeWindow.setLocationRelativeTo(null);
             }
             else
               JOptionPane.showMessageDialog(null, "Incorrect User Name or Password");

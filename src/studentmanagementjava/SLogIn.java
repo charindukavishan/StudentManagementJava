@@ -169,7 +169,9 @@ public class SLogIn extends javax.swing.JFrame {
             System.out.println(auth);
             if(auth) {
               dispose();
-              new Home().setVisible(true);
+              Home homeWindow = new Home();
+              homeWindow.setVisible(true);
+              homeWindow.setLocationRelativeTo(null);
             }
             else
               JOptionPane.showMessageDialog(null, "Incorrect User Name or Password");

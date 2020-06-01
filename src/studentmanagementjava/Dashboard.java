@@ -178,7 +178,9 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
         dispose();
-        new SLogIn().setVisible(true);
+        SLogIn sLoginWindow = new SLogIn();
+        sLoginWindow.setVisible(true);
+        sLoginWindow.setLocationRelativeTo(null);
     }//GEN-LAST:event_jPanel3MouseClicked
 
     private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
@@ -200,7 +202,10 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel3MouseExited
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        new AdminLogin().setVisible(true);
+        dispose();
+        AdminLogin AdminLoginWindow =  new AdminLogin();
+        AdminLoginWindow.setVisible(true);
+        AdminLoginWindow.setLocationRelativeTo(null);
     }//GEN-LAST:event_jPanel1MouseClicked
 
     /**
