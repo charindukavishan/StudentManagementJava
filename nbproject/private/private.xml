@@ -3,10 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/studentmanagementjava/SRegister.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/studentmanagementjava/Admin/AdminHome.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/connection/StudentTableModel.java</file>
-            <file>file:/E:/MyWork/Student%20Management%20System/StudentManagementJava/src/studentmanagementjava/Home.java</file>
+            <file>file:/D:/StudentManagementSystem/StudentManagementJava/src/studentmanagementjava/SLogIn.java</file>
+            <file>file:/D:/StudentManagementSystem/StudentManagementJava/src/connection/StudentTableModel.java</file>
+            <file>file:/D:/StudentManagementSystem/StudentManagementJava/src/studentmanagementjava/Home.java</file>
+            <file>file:/D:/StudentManagementSystem/StudentManagementJava/src/connection/AdminTableModel.java</file>
+            <file>file:/D:/StudentManagementSystem/StudentManagementJava/src/connection/MySqlConnection.java</file>
+            <file>file:/D:/StudentManagementSystem/StudentManagementJava/src/studentmanagementjava/StudentManagementJava.java</file>
+            <file>file:/D:/StudentManagementSystem/StudentManagementJava/src/studentmanagementjava/Dashboard.java</file>
+            <file>file:/D:/StudentManagementSystem/StudentManagementJava/src/connection/Module.java</file>
+            <file>file:/D:/StudentManagementSystem/StudentManagementJava/src/connection/User.java</file>
+            <file>file:/D:/StudentManagementSystem/StudentManagementJava/src/studentmanagementjava/Admin/AdminHome.java</file>
+            <file>file:/D:/StudentManagementSystem/StudentManagementJava/src/connection/SemesterTableModel.java</file>
+            <file>file:/D:/StudentManagementSystem/StudentManagementJava/src/connection/Auth.java</file>
+            <file>file:/D:/StudentManagementSystem/StudentManagementJava/src/studentmanagementjava/SRegister.java</file>
+            <file>file:/D:/StudentManagementSystem/StudentManagementJava/src/studentmanagementjava/Admin/ResultsByCourse.java</file>
         </group>
     </open-files>
 </project-private>
