@@ -26,6 +26,7 @@ public class AddCourse extends javax.swing.JFrame {
         initComponents();
         
         addSemesterList();
+        this.setLocationRelativeTo(null);
     }
     
     private void addSemesterList(){

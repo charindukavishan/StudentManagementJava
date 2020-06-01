@@ -24,6 +24,7 @@ public class UpdateCourse extends javax.swing.JFrame {
      */
     public UpdateCourse(String moduleId,String semester) {
         initComponents();
+        this.setLocationRelativeTo(null);
         selectedModuleId = moduleId;
         addSemesterList();
         updateFields(moduleId,semester);

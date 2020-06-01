@@ -25,6 +25,7 @@ public class ResultsByCourse extends javax.swing.JFrame {
      */
     public ResultsByCourse(String moduleId) {
         initComponents();        
+        this.setLocationRelativeTo(null);
         fillDetails(moduleId);
     }
     

@@ -29,6 +29,7 @@ public class SRegister extends javax.swing.JFrame {
     PreparedStatement quary;
     public SRegister() {
         initComponents();
+        this.setLocationRelativeTo(null);
         addSemesterList();
     }
 
